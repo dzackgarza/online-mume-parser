@@ -1,0 +1,30 @@
+{
+  "name": "mume-frontend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "watch": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "@shd101wyy/mume": "^0.3.2",
+    "babel-eslint": "^8.2.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "eslint": "^4.19.1",
+    "eslint-config-baumeister": "^1.0.2",
+    "eslint-config-xo": "^0.20.1",
+    "eslint-plugin-filenames": "^1.2.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-unicorn": "^4.0.3",
+    "express": "~4.16.0",
+    "express-fileupload": "^0.4.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "stylelint-config-standard": "^18.2.0"
+  }
+}

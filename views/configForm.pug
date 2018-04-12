@@ -1,0 +1,133 @@
+form
+	|  usePandocParser
+	input(type='checkbox', name='vehicle', value='Bike')
+	br
+	|  breakOnSingleNewLine
+	input(type='checkbox', name='vehicle', value='Bike', checked)
+	br
+	|  enableTypographer
+	input(type='checkbox', name='vehicle', value='Bike')
+	br
+	| mathRenderingOption
+	select
+		option KaTeX
+		option MathJax
+		option None
+	br
+	| mathInlineDelimiters
+	input(value=`[["$", "$"], ["\\(", "\\)"]]`)
+	br
+	| mathBlockDelimiters
+	input(value=`[["$$", "$$"], ["\\[", "\\]"]]`)
+	br
+	|  enableWikiLinkSyntax
+	input(type='checkbox', name='vehicle', value='Bike', checked)
+	br
+	| wikiLinkFileExtension
+	input(value=`.md`)
+	br
+	| enableEmojiSyntax
+	input(type='checkbox', name='vehicle', value='Bike', checked)
+	br
+	| enableExtendedTableSyntax
+	input(type='checkbox', name='vehicle', value='Bike')
+	br
+	| enableCriticMarkupSyntax
+	input(type='checkbox', name='vehicle', value='Bike')
+	br
+	| frontMatterRenderingOption
+	select
+		option table
+		option code block
+		option none
+	br
+	| mermaidTheme
+	select
+		option mermaid.css
+		option mermaid.dark.css
+		option mermaid.forest.css
+	br
+	| codeBlockTheme
+	select
+		option auto.css
+		option default.css
+		option atom-dark.css
+		option atom-light.css
+		option atom-material.css
+		option coy.css
+		option darcula.css
+		option dark.css
+		option funky.css
+		option github.css
+		option hopscotch.css
+		option monokai.css
+		option okaida.css
+		option one-dark.css
+		option one-light.css
+		option pen-paper-coffee.css
+		option pojoaque.css
+		option solarized-dark.css
+		option solarized-light.css
+		option twilight.css
+		option vue.css
+		option vs.css
+		option xonokai
+	br
+	| previewTheme
+	select
+		option github-light.css
+		option atom-dark.css
+		option atom-light.css
+		option atom-material.css
+		option github-dark.css
+		option github-light.css
+		option gothic.css
+		option medium.css
+		option monokai.css
+		option newsprint.css
+		option night.css
+		option none.css
+		option one-dark.css
+		option one-light.css
+		option solarized-dark.css
+		option solarized-light.css
+		option vue.css
+
+br
+| revealjsTheme
+select
+	option beige.css
+	option black.css
+	option blood.css
+	option league.css
+	option moon.css
+	option night.css
+	option serif.css
+	option simple.css
+	option sky.css
+	option solarized.css
+	option white.css
+	option none.css
+br
+| protocolsWhiteList
+input(value='http, https, atom, file')
+br
+	| imageFolderPath
+	input(value=`/assets`)
+br
+| printBackground
+input(type='checkbox', name='vehicle', value='Bike')
+br
+| pandocMarkdownFlavor
+input(value='markdown-raw_tex+tex_math_single_backslash')
+br
+| pandocArguments
+input(value='')
+br
+| latexEngine
+input(value='pdflatex')
+br
+| enableScriptExecution
+input(type='checkbox', name='vehicle', value='Bike', checked)
+input(type='file', name='mdFile')
+input(type='submit', value='Upload!')
