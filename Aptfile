@@ -1,1 +1,3 @@
 texlive-base
+pdf2svg
+pandoc

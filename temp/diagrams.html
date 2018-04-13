@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>diagrams</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.0.0/mermaid.min.css">
+      <link rel="stylesheet" href="https://bramp.github.io/js-sequence-diagrams/css/sequence-diagram-min.css">
+      
+      
+      
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.0.0/mermaid.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/wavedrom/1.4.1/skins/default.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/wavedrom/1.4.1/wavedrom.min.js"></script>
+      
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.7.0/flowchart.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script><script type="text/javascript" src="https://bramp.github.io/js-sequence-diagrams/js/sequence-diagram-min.js"></script>
+
+      <style> 
+      /* http://prismjs.com/download.html?themes=prism&languages=markup+css+clike+javascript+abap+actionscript+ada+apacheconf+apl+applescript+asciidoc+aspnet+autoit+autohotkey+bash+basic+batch+c+brainfuck+bro+bison+csharp+cpp+coffeescript+ruby+css-extras+d+dart+django+diff+docker+eiffel+elixir+erlang+fsharp+fortran+gherkin+git+glsl+go+graphql+groovy+haml+handlebars+haskell+haxe+http+icon+inform7+ini+j+jade+java+jolie+json+julia+keyman+kotlin+latex+less+livescript+lolcode+lua+makefile+markdown+matlab+mel+mizar+monkey+nasm+nginx+nim+nix+nsis+objectivec+ocaml+oz+parigp+parser+pascal+perl+php+php-extras+powershell+processing+prolog+properties+protobuf+puppet+pure+python+q+qore+r+jsx+reason+rest+rip+roboconf+crystal+rust+sas+sass+scss+scala+scheme+smalltalk+smarty+sql+stylus+swift+tcl+textile+twig+typescript+vbnet+verilog+vhdl+vim+wiki+xojo+yaml */
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h2 class="mume-header" id="flow-chartshttpsshd101wyygithubiomarkdown-preview-enhanceddiagramsidflow-charts"><a href="https://shd101wyy.github.io/markdown-preview-enhanced/#/diagrams?id=flow-charts">Flow Charts</a></h2>
+
+<p><code>flow</code></p>
+<div class="flow">st=>start: Start|past:>http://www.google.com[blank]
+e=>end: End|future:>http://www.google.com
+op1=>operation: My Operation|past
+op2=>operation: Stuff|current
+sub1=>subroutine: My Subroutine|invalid
+cond=>condition: Yes
+or No?|approved:>http://www.google.com
+c2=>condition: Good idea|rejected
+io=>inputoutput: catch something...|future
+
+st->op1(right)->cond
+cond(yes, right)->c2
+cond(no)->sub1(left)->op1
+c2(yes)->io->e
+c2(no)->op2->e
+</div><h2 class="mume-header" id="sequence-diagramshttpsshd101wyygithubiomarkdown-preview-enhanceddiagramsidsequence-diagrams"><a href="https://shd101wyy.github.io/markdown-preview-enhanced/#/diagrams?id=sequence-diagrams">Sequence Diagrams</a></h2>
+
+<p><code>sequence</code></p>
+<div class="sequence">Title: Here is a title
+A->B: Normal line
+B-->C: Dashed line
+C->>D: Open arrow
+D-->>A: Dashed open arrow
+</div><hr>
+<p><code>sequence {theme=hand}</code></p>
+<div theme="hand" class="sequence">Title: Here is a title
+A->B: Normal line
+B-->C: Dashed line
+C->>D: Open arrow
+D-->>A: Dashed open arrow
+</div><h2 class="mume-header" id="mermaidhttpsshd101wyygithubiomarkdown-preview-enhanceddiagramsidmermaid"><a href="https://shd101wyy.github.io/markdown-preview-enhanced/#/diagrams?id=mermaid">Mermaid</a></h2>
+
+<p><code>mermaid</code></p>
+<div class="mermaid">graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+</div><hr>
+<p><code>mermaid {code_block=true}</code></p>
+<pre data-role="codeBlock" data-info="mermaid {code_block=true}" class="language-mermaid"><code>graph TD;
+    A--&gt;B;
+    A--&gt;C;
+    B--&gt;D;
+    C--&gt;D;
+</code></pre><div code_block="true" class="mermaid">graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+</div><h2 class="mume-header" id="plantumlhttpsshd101wyygithubiomarkdown-preview-enhanceddiagramsidplantuml"><a href="https://shd101wyy.github.io/markdown-preview-enhanced/#/diagrams?id=plantuml">PlantUML</a></h2>
+
+<p><code>puml</code></p>
+<p><?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="215px" preserveAspectRatio="none" style="width:303px;height:215px;" version="1.1" viewBox="0 0 303 215" width="303px" zoomAndPan="magnify"><defs><filter height="300%" id="fbrzg00n1hs25" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"></feGaussianBlur><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"></feColorMatrix><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"></feOffset><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"></feBlend></filter></defs><g><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="34" x2="34" y1="38.2969" y2="174.8281"></line><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="273.5" x2="273.5" y1="38.2969" y2="174.8281"></line><rect fill="#FEFECE" filter="url(#fbrzg00n1hs25)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="49" x="8" y="3"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="35" x="15" y="22.9951">Alice</text><rect fill="#FEFECE" filter="url(#fbrzg00n1hs25)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="49" x="8" y="173.8281"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="35" x="15" y="193.8232">Alice</text><rect fill="#FEFECE" filter="url(#fbrzg00n1hs25)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="42" x="250.5" y="3"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="257.5" y="22.9951">Bob</text><rect fill="#FEFECE" filter="url(#fbrzg00n1hs25)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="42" x="250.5" y="173.8281"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="257.5" y="193.8232">Bob</text><polygon fill="#A80036" points="261.5,65.2969,271.5,69.2969,261.5,73.2969,265.5,69.2969" style="stroke: #A80036; stroke-width: 1.0;"></polygon><line style="stroke: #A80036; stroke-width: 1.0;" x1="34.5" x2="267.5" y1="69.2969" y2="69.2969"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="41.5" y="64.3638">Authentication Request</text><polygon fill="#A80036" points="45.5,94.4297,35.5,98.4297,45.5,102.4297,41.5,98.4297" style="stroke: #A80036; stroke-width: 1.0;"></polygon><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="39.5" x2="272.5" y1="98.4297" y2="98.4297"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="51.5" y="93.4966">Authentication Response</text><polygon fill="#A80036" points="261.5,123.5625,271.5,127.5625,261.5,131.5625,265.5,127.5625" style="stroke: #A80036; stroke-width: 1.0;"></polygon><line style="stroke: #A80036; stroke-width: 1.0;" x1="34.5" x2="267.5" y1="127.5625" y2="127.5625"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="206" x="41.5" y="122.6294">Another authentication Request</text><polygon fill="#A80036" points="45.5,152.6953,35.5,156.6953,45.5,160.6953,41.5,156.6953" style="stroke: #A80036; stroke-width: 1.0;"></polygon><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="39.5" x2="272.5" y1="156.6953" y2="156.6953"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="215" x="51.5" y="151.7622">another authentication Response</text><!--
+@startuml
+Alice -> Bob: Authentication Request
+Bob - -> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <- - Bob: another authentication Response
+@enduml
+
+PlantUML version 1.2018.01(Sun Jan 28 10:08:22 PST 2018)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 1.8.0_162-8u162-b12-0ubuntu0.17.10.2-b12
+Operating System: Linux
+OS Version: 4.13.0-38-generic
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg></p><hr>
+<p><code>puml {align=&quot;center&quot;}</code></p>
+<p align="center"><?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="112px" preserveAspectRatio="none" style="width:79px;height:112px;" version="1.1" viewBox="0 0 79 112" width="79px" zoomAndPan="magnify"><defs><filter height="300%" id="f1rn0dvpk7l7j" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"></feGaussianBlur><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"></feColorMatrix><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"></feOffset><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"></feBlend></filter></defs><g><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="21" x2="21" y1="38.2969" y2="72.2969"></line><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="58" x2="58" y1="38.2969" y2="72.2969"></line><rect fill="#FEFECE" filter="url(#f1rn0dvpk7l7j)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="23" x="8" y="3"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="9" x="15" y="22.9951">a</text><rect fill="#FEFECE" filter="url(#f1rn0dvpk7l7j)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="23" x="8" y="71.2969"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="9" x="15" y="91.292">a</text><rect fill="#FEFECE" filter="url(#f1rn0dvpk7l7j)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="23" x="45" y="3"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="9" x="52" y="22.9951">b</text><rect fill="#FEFECE" filter="url(#f1rn0dvpk7l7j)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="23" x="45" y="71.2969"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="9" x="52" y="91.292">b</text><polygon fill="#A80036" points="46.5,50.2969,56.5,54.2969,46.5,58.2969,50.5,54.2969" style="stroke: #A80036; stroke-width: 1.0;"></polygon><line style="stroke: #A80036; stroke-width: 1.0;" x1="21.5" x2="52.5" y1="54.2969" y2="54.2969"></line><!--
+@startuml
+a->b
+@enduml
+
+PlantUML version 1.2018.01(Sun Jan 28 10:08:22 PST 2018)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 1.8.0_162-8u162-b12-0ubuntu0.17.10.2-b12
+Operating System: Linux
+OS Version: 4.13.0-38-generic
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg></p><hr>
+<p><code>plantuml</code></p>
+<p><?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="215px" preserveAspectRatio="none" style="width:303px;height:215px;" version="1.1" viewBox="0 0 303 215" width="303px" zoomAndPan="magnify"><defs><filter height="300%" id="fbrzg00n1hs25" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"></feGaussianBlur><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"></feColorMatrix><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"></feOffset><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"></feBlend></filter></defs><g><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="34" x2="34" y1="38.2969" y2="174.8281"></line><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="273.5" x2="273.5" y1="38.2969" y2="174.8281"></line><rect fill="#FEFECE" filter="url(#fbrzg00n1hs25)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="49" x="8" y="3"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="35" x="15" y="22.9951">Alice</text><rect fill="#FEFECE" filter="url(#fbrzg00n1hs25)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="49" x="8" y="173.8281"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="35" x="15" y="193.8232">Alice</text><rect fill="#FEFECE" filter="url(#fbrzg00n1hs25)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="42" x="250.5" y="3"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="257.5" y="22.9951">Bob</text><rect fill="#FEFECE" filter="url(#fbrzg00n1hs25)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="42" x="250.5" y="173.8281"></rect><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="257.5" y="193.8232">Bob</text><polygon fill="#A80036" points="261.5,65.2969,271.5,69.2969,261.5,73.2969,265.5,69.2969" style="stroke: #A80036; stroke-width: 1.0;"></polygon><line style="stroke: #A80036; stroke-width: 1.0;" x1="34.5" x2="267.5" y1="69.2969" y2="69.2969"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="152" x="41.5" y="64.3638">Authentication Request</text><polygon fill="#A80036" points="45.5,94.4297,35.5,98.4297,45.5,102.4297,41.5,98.4297" style="stroke: #A80036; stroke-width: 1.0;"></polygon><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="39.5" x2="272.5" y1="98.4297" y2="98.4297"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="162" x="51.5" y="93.4966">Authentication Response</text><polygon fill="#A80036" points="261.5,123.5625,271.5,127.5625,261.5,131.5625,265.5,127.5625" style="stroke: #A80036; stroke-width: 1.0;"></polygon><line style="stroke: #A80036; stroke-width: 1.0;" x1="34.5" x2="267.5" y1="127.5625" y2="127.5625"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="206" x="41.5" y="122.6294">Another authentication Request</text><polygon fill="#A80036" points="45.5,152.6953,35.5,156.6953,45.5,160.6953,41.5,156.6953" style="stroke: #A80036; stroke-width: 1.0;"></polygon><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="39.5" x2="272.5" y1="156.6953" y2="156.6953"></line><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="215" x="51.5" y="151.7622">another authentication Response</text><!--
+@startuml
+Alice -> Bob: Authentication Request
+Bob - -> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <- - Bob: another authentication Response
+@enduml
+
+PlantUML version 1.2018.01(Sun Jan 28 10:08:22 PST 2018)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 1.8.0_162-8u162-b12-0ubuntu0.17.10.2-b12
+Operating System: Linux
+OS Version: 4.13.0-38-generic
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg></p><h2 class="mume-header" id="wavedromhttpsshd101wyygithubiomarkdown-preview-enhanceddiagramsidsequence-diagrams"><a href="https://shd101wyy.github.io/markdown-preview-enhanced/#/diagrams?id=sequence-diagrams">WaveDrom</a></h2>
+
+<p><code>wavedrom</code></p>
+<div class="wavedrom"><script type="WaveDrom">{ signal : [
+  { name: "clk",  wave: "p......" },
+  { name: "bus",  wave: "x.34.5x",   data: "head body tail" },
+  { name: "wire", wave: "0.1..0." },
+]}
+</script></div><h2 class="mume-header" id="graphvizhttpsshd101wyygithubiomarkdown-preview-enhanceddiagramsidgraphviz"><a href="https://shd101wyy.github.io/markdown-preview-enhanced/#/diagrams?id=graphviz">GraphViz</a></h2>
+
+<p><code>viz</code></p>
+<p><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="134pt" height="188pt" viewBox="0.00 0.00 134.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 130,-184 130,4 -4,4"></polygon>
+<!-- A -->
+<g id="node1" class="node">
+<title>A</title>
+<ellipse fill="none" stroke="#000000" cx="63" cy="-162" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="63" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">A</text>
+</g>
+<!-- B -->
+<g id="node2" class="node">
+<title>B</title>
+<ellipse fill="none" stroke="#000000" cx="63" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="63" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">B</text>
+</g>
+<!-- A&#45;&gt;B -->
+<g id="edge1" class="edge">
+<title>A&#45;&gt;B</title>
+<path fill="none" stroke="#000000" d="M63,-143.8314C63,-136.131 63,-126.9743 63,-118.4166"></path>
+<polygon fill="#000000" stroke="#000000" points="66.5001,-118.4132 63,-108.4133 59.5001,-118.4133 66.5001,-118.4132"></polygon>
+</g>
+<!-- C -->
+<g id="node3" class="node">
+<title>C</title>
+<ellipse fill="none" stroke="#000000" cx="27" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="27" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">C</text>
+</g>
+<!-- B&#45;&gt;C -->
+<g id="edge2" class="edge">
+<title>B&#45;&gt;C</title>
+<path fill="none" stroke="#000000" d="M54.2854,-72.5708C50.0403,-64.0807 44.8464,-53.6929 40.1337,-44.2674"></path>
+<polygon fill="#000000" stroke="#000000" points="43.237,-42.6477 35.6343,-35.2687 36.976,-45.7782 43.237,-42.6477"></polygon>
+</g>
+<!-- D -->
+<g id="node4" class="node">
+<title>D</title>
+<ellipse fill="none" stroke="#000000" cx="99" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="99" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">D</text>
+</g>
+<!-- B&#45;&gt;D -->
+<g id="edge3" class="edge">
+<title>B&#45;&gt;D</title>
+<path fill="none" stroke="#000000" d="M71.7146,-72.5708C75.9597,-64.0807 81.1536,-53.6929 85.8663,-44.2674"></path>
+<polygon fill="#000000" stroke="#000000" points="89.024,-45.7782 90.3657,-35.2687 82.763,-42.6477 89.024,-45.7782"></polygon>
+</g>
+</g>
+</svg>
+</p><hr>
+<p><code>dot {engine=circo}</code></p>
+<p engine="circo"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.40.1 (20161225.0304)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="314pt" height="296pt" viewBox="0.00 0.00 314.00 296.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 292)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-292 310,-292 310,4 -4,4"></polygon>
+<!-- A -->
+<g id="node1" class="node">
+<title>A</title>
+<ellipse fill="none" stroke="#000000" cx="27" cy="-144" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="27" y="-139.8" font-family="Times,serif" font-size="14.00" fill="#000000">A</text>
+</g>
+<!-- B -->
+<g id="node2" class="node">
+<title>B</title>
+<ellipse fill="none" stroke="#000000" cx="279" cy="-144" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="279" y="-139.8" font-family="Times,serif" font-size="14.00" fill="#000000">B</text>
+</g>
+<!-- A&#45;&gt;B -->
+<g id="edge1" class="edge">
+<title>A&#45;&gt;B</title>
+<path fill="none" stroke="#000000" d="M54.4481,-144C99.8226,-144 190.5299,-144 241.6826,-144"></path>
+<polygon fill="#000000" stroke="#000000" points="241.9672,-147.5001 251.9671,-144 241.9671,-140.5001 241.9672,-147.5001"></polygon>
+</g>
+<!-- C -->
+<g id="node3" class="node">
+<title>C</title>
+<ellipse fill="none" stroke="#000000" cx="279" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="279" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">C</text>
+</g>
+<!-- B&#45;&gt;C -->
+<g id="edge2" class="edge">
+<title>B&#45;&gt;C</title>
+<path fill="none" stroke="#000000" d="M279,-125.9473C279,-105.0823 279,-70.4928 279,-46.1006"></path>
+<polygon fill="#000000" stroke="#000000" points="282.5001,-46.0192 279,-36.0192 275.5001,-46.0193 282.5001,-46.0192"></polygon>
+</g>
+<!-- D -->
+<g id="node4" class="node">
+<title>D</title>
+<ellipse fill="none" stroke="#000000" cx="279" cy="-270" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="279" y="-265.8" font-family="Times,serif" font-size="14.00" fill="#000000">D</text>
+</g>
+<!-- B&#45;&gt;D -->
+<g id="edge3" class="edge">
+<title>B&#45;&gt;D</title>
+<path fill="none" stroke="#000000" d="M279,-162.0527C279,-182.9177 279,-217.5072 279,-241.8994"></path>
+<polygon fill="#000000" stroke="#000000" points="275.5001,-241.9807 279,-251.9808 282.5001,-241.9808 275.5001,-241.9807"></polygon>
+</g>
+</g>
+</svg>
+</p><h2 class="mume-header" id="vega">Vega</h2>
+
+<p><code>vega</code> + json</p>
+<p><?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg class="marks" width="442" height="239" viewBox="0 0 442 239" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g transform="translate(37,16)"><g class="mark-group role-frame root"><g transform="translate(0,0)"><path class="background" d="M0,0h400v200h-400Z" style="fill: none;"></path><g><g class="mark-group role-axis"><g transform="translate(0.5,200.5)"><path class="background" d="M0,0h0v0h0Z" style="pointer-events: none; fill: none;"></path><g><g class="mark-rule role-axis-tick" style="pointer-events: none;"><line transform="translate(28,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(77,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(126,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(175,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(224,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(273,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(322,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(371,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g><g class="mark-text role-axis-label" style="pointer-events: none;"><text text-anchor="middle" transform="translate(27.5,15)" style="font: 10px sans-serif; fill: #000; opacity: 1;">A</text><text text-anchor="middle" transform="translate(76.5,15)" style="font: 10px sans-serif; fill: #000; opacity: 1;">B</text><text text-anchor="middle" transform="translate(125.5,15)" style="font: 10px sans-serif; fill: #000; opacity: 1;">C</text><text text-anchor="middle" transform="translate(174.5,15)" style="font: 10px sans-serif; fill: #000; opacity: 1;">D</text><text text-anchor="middle" transform="translate(223.5,15)" style="font: 10px sans-serif; fill: #000; opacity: 1;">E</text><text text-anchor="middle" transform="translate(272.5,15)" style="font: 10px sans-serif; fill: #000; opacity: 1;">F</text><text text-anchor="middle" transform="translate(321.5,15)" style="font: 10px sans-serif; fill: #000; opacity: 1;">G</text><text text-anchor="middle" transform="translate(370.5,15)" style="font: 10px sans-serif; fill: #000; opacity: 1;">H</text></g><g class="mark-rule role-axis-domain" style="pointer-events: none;"><line transform="translate(0,0)" x2="400" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g></g></g></g><g class="mark-group role-axis"><g transform="translate(0.5,0.5)"><path class="background" d="M0,0h0v0h0Z" style="pointer-events: none; fill: none;"></path><g><g class="mark-rule role-axis-tick" style="pointer-events: none;"><line transform="translate(0,200)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,180)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,160)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,140)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,120)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,100)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,80)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,60)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,40)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,20)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,0)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g><g class="mark-text role-axis-label" style="pointer-events: none;"><text text-anchor="end" transform="translate(-7,203)" style="font: 10px sans-serif; fill: #000; opacity: 1;">0</text><text text-anchor="end" transform="translate(-7,183)" style="font: 10px sans-serif; fill: #000; opacity: 1;">10</text><text text-anchor="end" transform="translate(-7,163)" style="font: 10px sans-serif; fill: #000; opacity: 1;">20</text><text text-anchor="end" transform="translate(-7,143)" style="font: 10px sans-serif; fill: #000; opacity: 1;">30</text><text text-anchor="end" transform="translate(-7,123)" style="font: 10px sans-serif; fill: #000; opacity: 1;">40</text><text text-anchor="end" transform="translate(-7,103)" style="font: 10px sans-serif; fill: #000; opacity: 1;">50</text><text text-anchor="end" transform="translate(-7,83)" style="font: 10px sans-serif; fill: #000; opacity: 1;">60</text><text text-anchor="end" transform="translate(-7,63)" style="font: 10px sans-serif; fill: #000; opacity: 1;">70</text><text text-anchor="end" transform="translate(-7,43)" style="font: 10px sans-serif; fill: #000; opacity: 1;">80</text><text text-anchor="end" transform="translate(-7,23)" style="font: 10px sans-serif; fill: #000; opacity: 1;">90</text><text text-anchor="end" transform="translate(-7,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">100</text></g><g class="mark-rule role-axis-domain" style="pointer-events: none;"><line transform="translate(0,200)" x2="0" y2="-200" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g></g></g></g><g class="mark-rect role-mark"><path d="M5,144h47v56h-47Z" style="fill: steelblue;"></path><path d="M54,89.99999999999999h47v110.00000000000001h-47Z" style="fill: steelblue;"></path><path d="M103,114h47v86h-47Z" style="fill: steelblue;"></path><path d="M152,18h47v182h-47Z" style="fill: steelblue;"></path><path d="M201,38h47v162h-47Z" style="fill: steelblue;"></path><path d="M250,94h47v106h-47Z" style="fill: steelblue;"></path><path d="M299,162h47v38h-47Z" style="fill: steelblue;"></path><path d="M348,26h47v174h-47Z" style="fill: steelblue;"></path></g><g class="mark-text role-mark"><text text-anchor="middle" transform="translate(0,-2)" style="font: 11px sans-serif; fill: #333; fill-opacity: 1;"></text></g></g></g></g></g></svg></p><h2 class="mume-header" id="vega-lite">Vega lite</h2>
+
+<p><code>vega-lite</code> + json</p>
+<p><?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg class="marks" width="248" height="249" viewBox="0 0 248 249" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g transform="translate(54,11)"><g class="mark-group role-frame root"><g transform="translate(0,0)"><path class="background" d="M0.5,0.5h189v200h-189Z" style="fill: none; stroke: #ddd;"></path><g><g class="mark-group role-axis"><g transform="translate(0.5,0.5)"><path class="background" d="M0,0h0v0h0Z" style="pointer-events: none; fill: none;"></path><g><g class="mark-rule role-axis-grid" style="pointer-events: none;"><line transform="translate(0,200)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,160)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,120)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,80)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,40)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,0)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line></g></g></g></g><g class="mark-rect role-mark marks"><path d="M1.0499999999999972,144h18.900000000000002v56h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M22.049999999999997,89.99999999999999h18.900000000000002v110.00000000000001h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M43.05,114h18.900000000000002v86h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M64.05,18h18.900000000000002v182h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M85.05,38h18.900000000000002v162h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M106.05,94h18.900000000000002v106h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M127.05,162h18.900000000000002v38h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M148.05,26h18.900000000000002v174h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M169.05,96h18.900000000000002v104h-18.900000000000002Z" style="fill: #4c78a8;"></path></g><g class="mark-group role-axis"><g transform="translate(0.5,200.5)"><path class="background" d="M0,0h0v0h0Z" style="pointer-events: none; fill: none;"></path><g><g class="mark-rule role-axis-tick" style="pointer-events: none;"><line transform="translate(9,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(31,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(52,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(73,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(94,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(115,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(136,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(157,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(178,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g><g class="mark-text role-axis-label" style="pointer-events: none;"><text text-anchor="end" transform="translate(9.499999999999998,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">A</text><text text-anchor="end" transform="translate(30.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">B</text><text text-anchor="end" transform="translate(51.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">C</text><text text-anchor="end" transform="translate(72.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">D</text><text text-anchor="end" transform="translate(93.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">E</text><text text-anchor="end" transform="translate(114.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">F</text><text text-anchor="end" transform="translate(135.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">G</text><text text-anchor="end" transform="translate(156.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">H</text><text text-anchor="end" transform="translate(177.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">I</text></g><g class="mark-rule role-axis-domain" style="pointer-events: none;"><line transform="translate(0,0)" x2="189" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g><g class="mark-text role-axis-title" style="pointer-events: none;"><text text-anchor="middle" transform="translate(94.5,29)" style="font: bold 11px sans-serif; fill: #000; opacity: 1;">a</text></g></g></g></g><g class="mark-group role-axis"><g transform="translate(0.5,0.5)"><path class="background" d="M0,0h0v0h0Z" style="pointer-events: none; fill: none;"></path><g><g class="mark-rule role-axis-tick" style="pointer-events: none;"><line transform="translate(0,200)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,160)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,120)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,80)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,40)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,0)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g><g class="mark-text role-axis-label" style="pointer-events: none;"><text text-anchor="end" transform="translate(-7,203)" style="font: 10px sans-serif; fill: #000; opacity: 1;">0</text><text text-anchor="end" transform="translate(-7,163)" style="font: 10px sans-serif; fill: #000; opacity: 1;">20</text><text text-anchor="end" transform="translate(-7,123)" style="font: 10px sans-serif; fill: #000; opacity: 1;">40</text><text text-anchor="end" transform="translate(-7,83)" style="font: 10px sans-serif; fill: #000; opacity: 1;">60</text><text text-anchor="end" transform="translate(-7,43)" style="font: 10px sans-serif; fill: #000; opacity: 1;">80</text><text text-anchor="end" transform="translate(-7,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">100</text></g><g class="mark-rule role-axis-domain" style="pointer-events: none;"><line transform="translate(0,200)" x2="0" y2="-200" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g><g class="mark-text role-axis-title" style="pointer-events: none;"><text text-anchor="middle" transform="translate(-36,100) rotate(-90) translate(0,-2)" style="font: bold 11px sans-serif; fill: #000; opacity: 1;">b</text></g></g></g></g></g></g></g></g></svg></p><hr>
+<p><code>vega-lite</code> + yaml</p>
+<p><?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg class="marks" width="248" height="249" viewBox="0 0 248 249" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g transform="translate(54,11)"><g class="mark-group role-frame root"><g transform="translate(0,0)"><path class="background" d="M0.5,0.5h189v200h-189Z" style="fill: none; stroke: #ddd;"></path><g><g class="mark-group role-axis"><g transform="translate(0.5,0.5)"><path class="background" d="M0,0h0v0h0Z" style="pointer-events: none; fill: none;"></path><g><g class="mark-rule role-axis-grid" style="pointer-events: none;"><line transform="translate(0,200)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,160)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,120)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,80)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,40)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,0)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line></g></g></g></g><g class="mark-rect role-mark marks"><path d="M1.0499999999999972,144h18.900000000000002v56h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M22.049999999999997,89.99999999999999h18.900000000000002v110.00000000000001h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M43.05,114h18.900000000000002v86h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M64.05,18h18.900000000000002v182h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M85.05,38h18.900000000000002v162h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M106.05,94h18.900000000000002v106h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M127.05,162h18.900000000000002v38h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M148.05,26h18.900000000000002v174h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M169.05,96h18.900000000000002v104h-18.900000000000002Z" style="fill: #4c78a8;"></path></g><g class="mark-group role-axis"><g transform="translate(0.5,200.5)"><path class="background" d="M0,0h0v0h0Z" style="pointer-events: none; fill: none;"></path><g><g class="mark-rule role-axis-tick" style="pointer-events: none;"><line transform="translate(9,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(31,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(52,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(73,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(94,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(115,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(136,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(157,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(178,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g><g class="mark-text role-axis-label" style="pointer-events: none;"><text text-anchor="end" transform="translate(9.499999999999998,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">A</text><text text-anchor="end" transform="translate(30.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">B</text><text text-anchor="end" transform="translate(51.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">C</text><text text-anchor="end" transform="translate(72.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">D</text><text text-anchor="end" transform="translate(93.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">E</text><text text-anchor="end" transform="translate(114.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">F</text><text text-anchor="end" transform="translate(135.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">G</text><text text-anchor="end" transform="translate(156.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">H</text><text text-anchor="end" transform="translate(177.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">I</text></g><g class="mark-rule role-axis-domain" style="pointer-events: none;"><line transform="translate(0,0)" x2="189" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g><g class="mark-text role-axis-title" style="pointer-events: none;"><text text-anchor="middle" transform="translate(94.5,29)" style="font: bold 11px sans-serif; fill: #000; opacity: 1;">a</text></g></g></g></g><g class="mark-group role-axis"><g transform="translate(0.5,0.5)"><path class="background" d="M0,0h0v0h0Z" style="pointer-events: none; fill: none;"></path><g><g class="mark-rule role-axis-tick" style="pointer-events: none;"><line transform="translate(0,200)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,160)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,120)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,80)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,40)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,0)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g><g class="mark-text role-axis-label" style="pointer-events: none;"><text text-anchor="end" transform="translate(-7,203)" style="font: 10px sans-serif; fill: #000; opacity: 1;">0</text><text text-anchor="end" transform="translate(-7,163)" style="font: 10px sans-serif; fill: #000; opacity: 1;">20</text><text text-anchor="end" transform="translate(-7,123)" style="font: 10px sans-serif; fill: #000; opacity: 1;">40</text><text text-anchor="end" transform="translate(-7,83)" style="font: 10px sans-serif; fill: #000; opacity: 1;">60</text><text text-anchor="end" transform="translate(-7,43)" style="font: 10px sans-serif; fill: #000; opacity: 1;">80</text><text text-anchor="end" transform="translate(-7,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">100</text></g><g class="mark-rule role-axis-domain" style="pointer-events: none;"><line transform="translate(0,200)" x2="0" y2="-200" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g><g class="mark-text role-axis-title" style="pointer-events: none;"><text text-anchor="middle" transform="translate(-36,100) rotate(-90) translate(0,-2)" style="font: bold 11px sans-serif; fill: #000; opacity: 1;">b</text></g></g></g></g></g></g></g></g></svg></p><hr>
+<p><code>vega-lite {hide=false}</code> + json</p>
+<pre data-role="codeBlock" data-info="vega-lite {hide=false}" class="language-yaml"><span class="token key atrule">"$schema"</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//vega.github.io/schema/vega<span class="token punctuation">-</span>lite/v2.json
+<span class="token key atrule">description</span><span class="token punctuation">:</span> A simple bar chart with embedded data.
+<span class="token key atrule">data</span><span class="token punctuation">:</span>
+  <span class="token key atrule">values</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"A"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">28</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"B"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">55</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"C"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">43</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"D"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">91</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"E"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">81</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"F"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">53</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"G"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">19</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"H"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">87</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"I"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">52</span><span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token key atrule">mark</span><span class="token punctuation">:</span> bar
+<span class="token key atrule">encoding</span><span class="token punctuation">:</span>
+  <span class="token key atrule">x</span><span class="token punctuation">:</span>
+    <span class="token key atrule">field</span><span class="token punctuation">:</span> a
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> ordinal
+  <span class="token key atrule">y</span><span class="token punctuation">:</span>
+    <span class="token key atrule">field</span><span class="token punctuation">:</span> b
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> quantitative
+</pre><p hide="false"><?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg class="marks" width="248" height="249" viewBox="0 0 248 249" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g transform="translate(54,11)"><g class="mark-group role-frame root"><g transform="translate(0,0)"><path class="background" d="M0.5,0.5h189v200h-189Z" style="fill: none; stroke: #ddd;"></path><g><g class="mark-group role-axis"><g transform="translate(0.5,0.5)"><path class="background" d="M0,0h0v0h0Z" style="pointer-events: none; fill: none;"></path><g><g class="mark-rule role-axis-grid" style="pointer-events: none;"><line transform="translate(0,200)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,160)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,120)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,80)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,40)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,0)" x2="189" y2="0" style="fill: none; stroke: #ddd; stroke-width: 1; opacity: 1;"></line></g></g></g></g><g class="mark-rect role-mark marks"><path d="M1.0499999999999972,144h18.900000000000002v56h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M22.049999999999997,89.99999999999999h18.900000000000002v110.00000000000001h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M43.05,114h18.900000000000002v86h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M64.05,18h18.900000000000002v182h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M85.05,38h18.900000000000002v162h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M106.05,94h18.900000000000002v106h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M127.05,162h18.900000000000002v38h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M148.05,26h18.900000000000002v174h-18.900000000000002Z" style="fill: #4c78a8;"></path><path d="M169.05,96h18.900000000000002v104h-18.900000000000002Z" style="fill: #4c78a8;"></path></g><g class="mark-group role-axis"><g transform="translate(0.5,200.5)"><path class="background" d="M0,0h0v0h0Z" style="pointer-events: none; fill: none;"></path><g><g class="mark-rule role-axis-tick" style="pointer-events: none;"><line transform="translate(9,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(31,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(52,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(73,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(94,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(115,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(136,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(157,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(178,0)" x2="0" y2="5" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g><g class="mark-text role-axis-label" style="pointer-events: none;"><text text-anchor="end" transform="translate(9.499999999999998,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">A</text><text text-anchor="end" transform="translate(30.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">B</text><text text-anchor="end" transform="translate(51.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">C</text><text text-anchor="end" transform="translate(72.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">D</text><text text-anchor="end" transform="translate(93.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">E</text><text text-anchor="end" transform="translate(114.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">F</text><text text-anchor="end" transform="translate(135.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">G</text><text text-anchor="end" transform="translate(156.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">H</text><text text-anchor="end" transform="translate(177.5,7) rotate(270) translate(0,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">I</text></g><g class="mark-rule role-axis-domain" style="pointer-events: none;"><line transform="translate(0,0)" x2="189" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g><g class="mark-text role-axis-title" style="pointer-events: none;"><text text-anchor="middle" transform="translate(94.5,29)" style="font: bold 11px sans-serif; fill: #000; opacity: 1;">a</text></g></g></g></g><g class="mark-group role-axis"><g transform="translate(0.5,0.5)"><path class="background" d="M0,0h0v0h0Z" style="pointer-events: none; fill: none;"></path><g><g class="mark-rule role-axis-tick" style="pointer-events: none;"><line transform="translate(0,200)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,160)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,120)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,80)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,40)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line><line transform="translate(0,0)" x2="-5" y2="0" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g><g class="mark-text role-axis-label" style="pointer-events: none;"><text text-anchor="end" transform="translate(-7,203)" style="font: 10px sans-serif; fill: #000; opacity: 1;">0</text><text text-anchor="end" transform="translate(-7,163)" style="font: 10px sans-serif; fill: #000; opacity: 1;">20</text><text text-anchor="end" transform="translate(-7,123)" style="font: 10px sans-serif; fill: #000; opacity: 1;">40</text><text text-anchor="end" transform="translate(-7,83)" style="font: 10px sans-serif; fill: #000; opacity: 1;">60</text><text text-anchor="end" transform="translate(-7,43)" style="font: 10px sans-serif; fill: #000; opacity: 1;">80</text><text text-anchor="end" transform="translate(-7,3)" style="font: 10px sans-serif; fill: #000; opacity: 1;">100</text></g><g class="mark-rule role-axis-domain" style="pointer-events: none;"><line transform="translate(0,200)" x2="0" y2="-200" style="fill: none; stroke: #888; stroke-width: 1; opacity: 1;"></line></g><g class="mark-text role-axis-title" style="pointer-events: none;"><text text-anchor="middle" transform="translate(-36,100) rotate(-90) translate(0,-2)" style="font: bold 11px sans-serif; fill: #000; opacity: 1;">b</text></g></g></g></g></g></g></g></g></svg></p><hr>
+<p><code>vega-lite {cmd=false}</code></p>
+<pre data-role="codeBlock" data-info="vega-lite {code_chunk_offset=0, cmd=false}" class="language-yaml"><span class="token key atrule">"$schema"</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//vega.github.io/schema/vega<span class="token punctuation">-</span>lite/v2.json
+<span class="token key atrule">description</span><span class="token punctuation">:</span> A simple bar chart with embedded data.
+<span class="token key atrule">data</span><span class="token punctuation">:</span>
+  <span class="token key atrule">values</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"A"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">28</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"B"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">55</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"C"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">43</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"D"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">91</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"E"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">81</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"F"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">53</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"G"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">19</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"H"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">87</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token key atrule">"a"</span><span class="token punctuation">:</span> <span class="token string">"I"</span><span class="token punctuation">,</span><span class="token key atrule">"b"</span><span class="token punctuation">:</span> <span class="token number">52</span><span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token key atrule">mark</span><span class="token punctuation">:</span> bar
+<span class="token key atrule">encoding</span><span class="token punctuation">:</span>
+  <span class="token key atrule">x</span><span class="token punctuation">:</span>
+    <span class="token key atrule">field</span><span class="token punctuation">:</span> a
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> ordinal
+  <span class="token key atrule">y</span><span class="token punctuation">:</span>
+    <span class="token key atrule">field</span><span class="token punctuation">:</span> b
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> quantitative
+</pre><hr>
+<p><code>vega-lite</code> + json (geo)</p>
+<p><?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg class="marks" width="664" height="310" viewBox="0 0 664 310" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><linearGradient id="gradient_0" x1="0" x2="1" y1="0" y2="0"><stop offset="NaN"></stop><stop offset="NaN"></stop></linearGradient></defs><g transform="translate(5,5)"><g class="mark-group role-frame root"><g transform="translate(0,0)"><path class="background" d="M0.5,0.5h500v300h-500Z" style="fill: none; stroke: #ddd;"></path><g><g class="mark-shape role-mark marks"></g><g class="mark-group role-legend"><g transform="translate(518,0)"><path class="background" d="M0,0h136v49h-136Z" style="pointer-events: none; fill: none;"></path><g><g class="mark-group role-legend-entry"><g transform="translate(0,16)"><path class="background" d="M0,0h0v0h0Z" style="pointer-events: none; fill: none;"></path><g><g class="mark-rect role-legend-gradient" style="pointer-events: none;"><path d="M0,0h100v20h-100Z" style="fill: url(#gradient_0); stroke: #ddd; stroke-width: 0; opacity: 1;"></path></g><g class="mark-text role-legend-label" style="pointer-events: none;"><text text-anchor="middle" transform="translate(0,30)" style="font: 10px sans-serif; fill: #000; opacity: 1;">-Infinity</text></g></g></g></g><g class="mark-text role-legend-title" style="pointer-events: none;"><text text-anchor="start" transform="translate(0,9)" style="font: bold 11px sans-serif; fill: #000; opacity: 1;">rate</text></g></g></g></g></g></g></g></g></svg></p><h2 class="mume-header" id="ditaahttpsshd101wyygithubiomarkdown-preview-enhanceddiagramsidditaa"><a href="https://shd101wyy.github.io/markdown-preview-enhanced/#/diagrams?id=ditaa">Ditaa</a></h2>
+
+<p><code>ditaa {cmd=true args=[&quot;-E&quot;]}</code></p>
+<img src="data:image/png;charset=utf-8;base64,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">
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#flow-chartshttpsshd101wyygithubiomarkdown-preview-enhanceddiagramsidflow-charts">Flow Charts</a></li>
+<li><a href="#sequence-diagramshttpsshd101wyygithubiomarkdown-preview-enhanceddiagramsidsequence-diagrams">Sequence Diagrams</a></li>
+<li><a href="#mermaidhttpsshd101wyygithubiomarkdown-preview-enhanceddiagramsidmermaid">Mermaid</a></li>
+<li><a href="#plantumlhttpsshd101wyygithubiomarkdown-preview-enhanceddiagramsidplantuml">PlantUML</a></li>
+<li><a href="#wavedromhttpsshd101wyygithubiomarkdown-preview-enhanceddiagramsidsequence-diagrams">WaveDrom</a></li>
+<li><a href="#graphvizhttpsshd101wyygithubiomarkdown-preview-enhanceddiagramsidgraphviz">GraphViz</a></li>
+<li><a href="#vega">Vega</a></li>
+<li><a href="#vega-lite">Vega lite</a></li>
+<li><a href="#ditaahttpsshd101wyygithubiomarkdown-preview-enhanceddiagramsidditaa">Ditaa</a></li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+    
+    <script>
+// config mermaid init call
+// http://knsv.github.io/mermaid/#configuration
+//
+// You can edit the 'MERMAID_CONFIG' variable below.
+MERMAID_CONFIG = {
+  startOnLoad: false
+}
+
+if (window['MERMAID_CONFIG']) {
+  window['MERMAID_CONFIG'].startOnLoad = false
+  window['MERMAID_CONFIG'].cloneCssStyles = false 
+}
+mermaidAPI.initialize(window['MERMAID_CONFIG'] || {})
+
+if (typeof(window['Reveal']) !== 'undefined') {
+  function mermaidRevealHelper(event) {
+    var currentSlide = event.currentSlide
+    var diagrams = currentSlide.querySelectorAll('.mermaid')
+    for (var i = 0; i < diagrams.length; i++) {
+      var diagram = diagrams[i]
+      if (!diagram.hasAttribute('data-processed')) {
+        mermaid.init(null, diagram, ()=> {
+          Reveal.slide(event.indexh, event.indexv)
+        })
+      }
+    }
+  }
+
+  Reveal.addEventListener('slidechanged', mermaidRevealHelper)
+  Reveal.addEventListener('ready', mermaidRevealHelper)
+} else {
+  mermaid.init(null, document.getElementsByClassName('mermaid'))
+}
+</script>
+    <script>WaveDrom.ProcessAll()</script>
+    
+    <script>
+var flowcharts = document.getElementsByClassName('flow')
+for (var i = 0; i < flowcharts.length; i++) {
+  var flow = flowcharts[i]
+  try {
+    var diagram = flowchart.parse(flow.textContent)
+    flow.id = 'flow_' + i
+    flow.innerHTML = ''
+    diagram.drawSVG(flow.id)
+  } catch (error) {
+    flow.innerHTML = '<pre class="language-text">' + error.toString() + '</pre>'
+  }
+}
+</script>
+    <script>
+      var sequenceDiagrams = document.getElementsByClassName('sequence')
+      for (var i = 0; i < sequenceDiagrams.length; i++) {
+        var sequence = sequenceDiagrams[i]
+        try {
+          var diagram = Diagram.parse(sequence.textContent)
+          var theme = sequence.getAttribute('theme') || 'simple'
+          sequence.id = 'sequence_' + i
+          sequence.innerHTML = ''
+          diagram.drawSVG(sequence.id, {theme: theme})
+        } catch (error) {
+          sequence.innerHTML = '<pre class="language-text">' + error.toString() + '</pre>'
+        }
+      }
+      </script>
+    <script>
+(function bindTaskListEvent() {
+  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
+  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
+    var checkbox = taskListItemCheckboxes[i]
+    var li = checkbox.parentElement
+    if (li.tagName !== 'LI') li = li.parentElement
+    if (li.tagName === 'LI') {
+      li.classList.add('task-list-item')
+    }
+  }
+}())    
+</script>
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  </html>
